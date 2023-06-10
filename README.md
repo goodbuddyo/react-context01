@@ -3,6 +3,7 @@ This is an exercise in understanding React component design and working with Rea
 It is based on the Pluralsight course "Working with Components in React 18"t 
 Author: Peter Kellner
 
+This app will be using next.js and a local db.json file
 After coding along with this course, the goal will be to use what is learned in the course for other applications.
 
 To run, open a terminal and run 
