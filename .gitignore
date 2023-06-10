@@ -30,4 +30,8 @@ yarn-error.log*
 # Ignore ESLint files
 .eslintcache
 
+# add .next to avoid warning
+# File .next/cache/webpack/client-development/0.pack is 57.80 MB; 
+# this is larger than GitHub's recommended maximum file size of 50.00 MB
 
+.next

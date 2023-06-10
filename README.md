@@ -15,6 +15,12 @@ Then, to run the app
 
 That will launch the web server on port 3000 where you can browser to it at the url: `http://localhost:3000`
 
+Note initial git push returns a warning so added .next to github
+# File .next/cache/webpack/client-development/0.pack is 57.80 MB; 
+# this is larger than GitHub's recommended maximum file size of 50.00 MB
+
+.next
+
 
 
 
