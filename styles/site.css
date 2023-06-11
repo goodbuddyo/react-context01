@@ -35,6 +35,7 @@
   /* Layout Settings */
   --container-max-width-default: 40%;
   --container-max-width-medium: 57%;
+  --container-max-width-small: 90%;
   --header-footer-padding: 1.56rem 1rem;
   --app-border-radius: 10px;
 
@@ -538,11 +539,16 @@ header[data-theme="dark"] h2,
 
 /* Footer */
 footer {
+  background: linear-gradient(
+          135deg,
+          rgba(var(--primary-rgb), 0.7) -10%,
+          rgba(var(--secondary-rgb), 0.8) 180%
+  ),
+  url(images/header-bg.jpeg);
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: var(--header-footer-padding);
-  background-color: var(--dark);
   color: var(--hard-light);
   display: flex;
   flex-direction: column;
@@ -551,6 +557,16 @@ footer {
   justify-content: space-between;
   font-size: 13px;
 }
+
+footer[data-theme="dark"],
+[data-theme="dark"] footer {
+  background: linear-gradient(
+          135deg,
+          rgba(var(--primary-rgb), 0.4) -20%,
+          rgba(var(--secondary-rgb), 0.5) 165%
+  );
+}
+
 
 footer .stats {
   display: flex;

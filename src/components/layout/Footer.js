@@ -1,28 +1,27 @@
-//import { useContext } from "react";
-//import { ToDosDataContext } from "../../contexts/ToDosDataContext";
+import { useContext } from "react";
+import { ToDosDataContext } from "../../contexts/ToDosDataContext";
 
-const Footer=() => {
-  const {todoList,deleteTodo,reFetch,loadingStatus}=
-    "lorum ipsum";
-  //useContext(ToDosDataContext)
+const Footer = () => {
+  const { todoList, deleteTodo, reFetch, loadingStatus } =
+    useContext(ToDosDataContext);
 
-  const totalItems=todoList?.length;
-  const notCompletedItems=todoList?.filter(
+  const totalItems = todoList?.length;
+  const notCompletedItems = todoList?.filter(
     (r) => !r.completed,
   ).length;
-  const importantItems=todoList?.filter(
-    (r) => !r.completed&&r.important,
+  const importantItems = todoList?.filter(
+    (r) => !r.completed && r.important,
   ).length;
 
-  const handleClearCompleted=() => {
-    const response=window.confirm("Clear Completed Todos?");
-    if(response) {
-      let completedIds=todoList
-      //  .filter((todoItem) => {
-      //    return todoItem.completed;
-      //  })
-      //  .map((rec) => rec.id);
-      //deleteTodo(completedIds);
+  const handleClearCompleted = () => {
+    const response = window.confirm("Clear Completed Todos?");
+    if (response) {
+      let completedIds = todoList
+        .filter((todoItem) => {
+          return todoItem.completed;
+        })
+        .map((rec) => rec.id);
+      deleteTodo(completedIds);
     }
   };
 
@@ -33,11 +32,28 @@ const Footer=() => {
           title="Refresh List"
           className="btn btn-theme-primary"
           onClick={() => {
-            console.log('reFetch')
+            reFetch();
           }}
         >
           <i className="fas fa-sync"></i>
         </button>
+
+        <div className="footer-refresh" title="Refreshing">
+          {loadingStatus === "loading" ? (
+            <span
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          ) : (
+            <span
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+              hidden
+            ></span>
+          )}
+        </div>
 
         <div className="clear-completed">
           <button
@@ -49,30 +65,30 @@ const Footer=() => {
         </div>
 
         <div className="quick-stats">
-
-          <p>
-            <span className="badge text-bg-secondary">
-              Badge Lorem ipsum
-            </span>{" "}
-            Items:Lorem ipsum{" "}
-            <span className="badge theme-main-bg">
-              Lorem ipsum
-            </span>{" "}
-            not completed of which{" "}
-            <span className="badge btn-theme-danger">
-              Important items
-            </span>{" "}
-            are important
-          </p>
-
-          <p className="hidden-block">
-            <span className="badge text-bg-secondary">x</span>{" "}
-            Items: <span className="badge theme-main-bg">x</span>{" "}
-            not completed of which{" "}
-            <span className="badge btn-theme-danger">x</span> are
-            important
-          </p>
-
+          {todoList?.length > 0 ? (
+            <p>
+              <span className="badge text-bg-secondary">
+                {totalItems}
+              </span>{" "}
+              Items:{" "}
+              <span className="badge theme-main-bg">
+                {notCompletedItems}
+              </span>{" "}
+              not completed of which{" "}
+              <span className="badge btn-theme-danger">
+                {importantItems}
+              </span>{" "}
+              are important
+            </p>
+          ) : (
+            <p className="hidden-block">
+              <span className="badge text-bg-secondary">x</span>{" "}
+              Items: <span className="badge theme-main-bg">x</span>{" "}
+              not completed of which{" "}
+              <span className="badge btn-theme-danger">x</span> are
+              important
+            </p>
+          )}
         </div>
       </div>
     </footer>
